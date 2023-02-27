@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GradesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
+
+
+// View All Users Data
+Route::get('/user_index',[UserController::class,'Index']);
+
+//Authonication
+Route::get('/auth/{mail}/{password}',[UserController::class,'Find_User']);
+
+//Show Grades
+Route::get('/grades/{id}',[GradesController::class,'Grades']);
+
+
+
+
+
+
+
+
