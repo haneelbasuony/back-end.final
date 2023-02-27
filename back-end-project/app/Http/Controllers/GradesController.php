@@ -10,7 +10,8 @@ class GradesController extends Controller
     public function Grades ($student_id){
         $grade = DB::select('SELECT
         su.subject_name,
-        e.grade
+        e.grade,
+        e.letter
         FROM enrolment AS e
         INNER JOIN student AS s
         ON s.student_id = e.student_id
