@@ -31,7 +31,7 @@ Route::get('/auth/{mail}/{password}', [UserController::class, 'Find_User']);
 //Show Data(leveName,l,GPA)
 Route::get('/data/{id}',[StudentController::class , 'getData']);
 //Image
-Route::get('/image/{id}', [StudntController::class, 'image']);
+Route::get('/image/{id}', [StudentController::class, 'image']);
 
 
 //Show Grades
@@ -43,9 +43,3 @@ Route::get('/grades/{id}/{level}', [GradesController::class, 'gradesLevel']);
 //Show Subject Data only (code,name,creditHour,state)
 //Route::get('/subject/{id}/{level}/{term}',[]);
 
-//Show 
-
-
-
-//Show user Image
-//Route::get('/image/{id}', [StudentController::class, 'getImage']);
