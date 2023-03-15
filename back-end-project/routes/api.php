@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GradesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\EnrollmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +42,5 @@ Route::get('/grades/{id}', [GradesController::class, 'All_Grades']);
 Route::get('/grades/{id}/{level}', [GradesController::class, 'gradesLevel']);
 
 //Show Subject Data only (code,name,creditHour,state)
-//Route::get('/subject/{id}/{level}/{term}',[]);
+Route::get('/subject/{id}/{level}/{term}',[EnrollmentController::class,'termState']);
 
