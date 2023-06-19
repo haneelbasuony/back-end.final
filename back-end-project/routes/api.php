@@ -4,6 +4,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GradesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\AdvisorController;
+use App\Http\Controllers\SubjectController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,17 +26,23 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
+
+//-------User----------------------------
+//----------------------------------------
 // Comment: This route is for getting all users' data.
 Route::get('/user_index', [UserController::class, 'Index']);
 
 // Comment: This route is for authenticating a user by email and password.
 Route::get('/auth/{mail}/{password}', [UserController::class, 'Find_User']);
 
-// Comment: This route is for getting a student's data by ID.
-Route::get('/data/{id}', [StudentController::class, 'getData']);
+
+
+
+//-------Student--------------------------
+//----------------------------------------
 
 // Comment: This route is for getting a student's profile image by ID.
-Route::get('/image/{id}', [StudentController::class, 'image']);
+Route::get('/studentImage/{id}', [StudentController::class, 'getImage']);
 
 // Comment: This route is for getting all grades of a student by ID.
 Route::get('/grades/{id}', [GradesController::class, 'All_Grades']);
@@ -42,8 +51,27 @@ Route::get('/grades/{id}', [GradesController::class, 'All_Grades']);
 Route::get('/grades/{id}/{level}', [GradesController::class, 'gradesLevel']);
 
 // Comment: This route is for getting the subject data (code, name, credit hour, state) for a student's enrollment in a certain term, identified by ID, level, and term.
-Route::get('/subject/{id}/{level}/{term}', [EnrollmentController::class, 'termState']);
-
+Route::get('/subject/{id}', [EnrollmentController::class, 'termState']);
 
 //Insert Enrolment
 Route::post('/request/{id}/{subject}', [EnrollmentController::class, 'Request']);
+
+
+
+
+//-------Advisor--------------------------
+//----------------------------------------
+Route::get('/advisorImage/{id}', [AdvisorController::class, 'getImage']);
+
+// insert grades or update
+Route::put('/enrolment/insertGrades/{studentId}/{subjectId}/{grade}/{score}', [EnrollmentController::class, 'setGrade']);
+
+
+
+
+//-------------Subject-------------------
+//get all subject status(open or closed)
+Route::get('subject/subjectStatus', [SubjectController::class, 'getStatus']);
+
+//post request to change subject state (open or closed) for advisor
+Route::put('/subject/update/{subjectId}/{subjectStatus}', [SubjectController::class, 'setStatus']);

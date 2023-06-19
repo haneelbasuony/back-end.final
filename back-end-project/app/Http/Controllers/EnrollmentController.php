@@ -7,22 +7,16 @@ use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
 {
-    /**
-     * Get enrollment data for a student in a given term and level.
-     *
-     * @param int $id The ID of the student.
-     * @param int $level The level of the subjects.
-     * @param string $term The term of the subjects.
-     * @return Illuminate\Http\JsonResponse A JSON response with the enrollment data.
-     */
-    public function termState($id, $level, $term)
+    public function termState($id)
     {
         // Retrieve subject information and enrollment data for the student in the given term and level
-        $leveData = DB::select('SELECT s.subject_code,s.subject_name ,s.subject_hours,e.grade
+        $leveData = DB::select(
+            'SELECT s.subject_level, s.Term ,s.subject_code,s.subject_name ,s.subject_hours,e.grade
         FROM subject s
         LEFT OUTER JOIN enrolment e
-        ON s.subject_code = e.subject_code AND e.student_id = :id
-        WHERE s.subject_level = :level AND s.Term = :term', ['level' => $level, 'id' => $id, 'term' => $term]);
+        ON s.subject_code = e.subject_code AND e.student_id = :id',
+            ['id' => $id]
+        );
 
         // Return a JSON response with the enrollment data
         return response()->Json($leveData);
@@ -37,5 +31,16 @@ class EnrollmentController extends Controller
 
         // Return a JSON response indicating that the data was inserted successfully
         return response()->json(['message' => 'Data inserted successfully']);
+    }
+    public function setGrade($studentId, $subjectId, $grade,$score)
+    {
+        DB::table('enrolment')
+        ->where('student_id', $studentId)
+        ->where('subject_code', $subjectId)
+        ->update([
+            'grade' => $grade,
+            'score' => $score,
+        ]);
+        return response()->Json('update is done');
     }
 }

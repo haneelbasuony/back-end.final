@@ -18,7 +18,8 @@ class GradesController extends Controller
             // Retrieve all grades of the student
             $grade = DB::select('SELECT
                 su.subject_name,
-                e.grade
+                e.grade,
+                e.score
                 FROM enrolment AS e
                 INNER JOIN student AS s
                 ON s.student_id = e.student_id
@@ -49,7 +50,8 @@ class GradesController extends Controller
             // Retrieve grades of the student for a particular level
             $grade = DB::select('SELECT
                 su.subject_name,
-                e.grade
+                e.grade,
+                e.score
                 FROM enrolment AS e
                 INNER JOIN student AS s
                 ON s.student_id = e.student_id
@@ -69,4 +71,6 @@ class GradesController extends Controller
             return response()->Json("Student ID Invalid");
         }
     }
+
+
 }
