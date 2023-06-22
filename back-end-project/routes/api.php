@@ -53,8 +53,8 @@ Route::get('/grades/{id}/{level}', [GradesController::class, 'gradesLevel']);
 // Comment: This route is for getting the subject data (code, name, credit hour, state) for a student's enrollment in a certain term, identified by ID, level, and term.
 Route::get('/STUsubject/{id}', [EnrollmentController::class, 'termState']);
 
-//Insert Enrolment
-Route::post('/request/{id}/{subject}', [EnrollmentController::class, 'Request']);
+//Insert Enrolment OK
+Route::post('/studentRequest', [EnrollmentController::class, 'request']);
 
 
 
@@ -63,8 +63,14 @@ Route::post('/request/{id}/{subject}', [EnrollmentController::class, 'Request'])
 //----------------------------------------
 Route::get('/advisorImage/{id}', [AdvisorController::class, 'getImage']);
 
-// insert grades or update
-Route::put('/enrolment/insertGrades/{studentId}/{subjectId}/{grade}/{score}', [EnrollmentController::class, 'setGrade']);
+//Show request
+Route::get('/enrolment/getRequest', [EnrollmentController::class, 'getRequest']);
+
+//handelRequest
+Route::post('/enrolment/handelRequest', [EnrollmentController::class, 'handelRequest']);
+
+// insert grades or update OK
+Route::put('/enrolment/insertGrades/{studentId}/{subjectId}/{grade}/{score}/{state}', [EnrollmentController::class, 'setGrade']);
 
 
 
@@ -74,4 +80,5 @@ Route::put('/enrolment/insertGrades/{studentId}/{subjectId}/{grade}/{score}', [E
 Route::get('/ADDsubject/subjectStatus', [SubjectController::class, 'getStatus']);
 
 //post request to change subject state (open or closed) for advisor
-Route::put('/subject/update/{subjectId}/{subjectStatus}', [SubjectController::class, 'setStatus']);
+Route::post('/subject/updateStatus', [SubjectController::class, 'setStatus']);
+
