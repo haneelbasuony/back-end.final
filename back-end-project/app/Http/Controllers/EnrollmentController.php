@@ -30,7 +30,7 @@ class EnrollmentController extends Controller
 
         // Retrieve subject information and enrollment data for the student in the given term and level
         $leveData = DB::select(
-            'SELECT s.subject_level, s.Term ,s.subject_code,s.subject_name ,s.subject_hours,e.grade, s.status
+            'SELECT s.subject_level, s.Term ,s.subject_code,s.subject_name ,s.subject_hours,e.grade, s.status ,e.state AS enrolment_state
         FROM subject s
         LEFT OUTER JOIN enrolment e
         ON s.subject_code = e.subject_code AND e.student_id = :id',

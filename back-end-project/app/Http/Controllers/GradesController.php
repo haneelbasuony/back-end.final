@@ -2,8 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use League\Csv\Reader;
+
+use App\Imports\ExcelImport;
+
+
+
+
 
 class GradesController extends Controller
 {
@@ -72,5 +81,17 @@ class GradesController extends Controller
         }
     }
 
-
+    public function importExcel(Request $request)
+    {
+        $file = $request->file('excel_file');
+    
+        // Provide the path to the imported Excel file
+        $import = new ExcelImport();
+        Excel::import($import, $file);
+    
+        // Optionally, you can perform additional tasks after the import
+        return response()->Json('File succesfully uploaded');
+       
+    }
+    
 }
