@@ -77,7 +77,7 @@ Route::post('/uploadCSV', [GradesController::class, 'importExcel']);
 
 
 
-//-------------Subject-------------------
+//-------------Subject--------------------
 //get all subject status(open or closed)
 Route::get('/ADDsubject/subjectStatus', [SubjectController::class, 'getStatus']);
 
