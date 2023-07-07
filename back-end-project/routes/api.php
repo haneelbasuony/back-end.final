@@ -72,7 +72,7 @@ Route::post('/enrolment/handelRequest', [EnrollmentController::class, 'handelReq
 // insert grades or update OK
 Route::put('/enrolment/insertGrades/{studentId}/{subjectId}/{grade}/{score}/{state}', [EnrollmentController::class, 'setGrade']);
 
-// Upload CSV ok OK
+// Upload CSV ok
 Route::post('/uploadCSV', [GradesController::class, 'importExcel']);
 
 
