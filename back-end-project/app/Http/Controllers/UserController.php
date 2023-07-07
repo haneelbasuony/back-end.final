@@ -12,13 +12,13 @@ class UserController extends Controller
      *
      * @return Illuminate\Support\Collection A collection of user records.
      */
-    public function Index()
+  /*  public function Index()
     {
         $user = DB::table('user')
             ->select('user_name', 'user_email', 'user_password')
             ->get();
         return $user;
-    }
+    }*/
 
     /**
      * Find a registered user with the given email address and password.

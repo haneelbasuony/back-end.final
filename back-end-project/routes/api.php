@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 //-------User----------------------------
 //----------------------------------------
 // Comment: This route is for getting all users' data.
-Route::get('/user_index', [UserController::class, 'Index']);
+//Route::get('/user_index', [UserController::class, 'Index']);
 
 // Comment: This route is for authenticating a user by email and password.
 Route::get('/auth/{mail}/{password}', [UserController::class, 'Find_User']);
