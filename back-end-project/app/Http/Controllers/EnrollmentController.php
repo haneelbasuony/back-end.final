@@ -27,6 +27,7 @@ class EnrollmentController extends Controller
         if ($response->getStatusCode() !== 200) {
             return $response;
         }
+        // ADD 1 column regestiration status	1 column dropable 
 
         // Retrieve subject information and enrollment data for the student in the given term and level
         $leveData = DB::select(
@@ -44,7 +45,7 @@ class EnrollmentController extends Controller
 
 
 
-    public function request(Request $request)
+    public function enrolmentState(Request $request)
     {
 
         $data = $request->input('data');
@@ -55,13 +56,14 @@ class EnrollmentController extends Controller
 
         // Prepare the data for insertion
         foreach ($data as $row) {
-            $id = $row['id'];
-            $subject = $row['subject'];
+            $id = $row['student_id'];
+            $subject = $row['subject_code'];
+            $state = $row['state'];
             // Add each row to the insert data array
             $insertData[] = [
                 'student_id' => $id,
                 'subject_code' => $subject,
-                'state' => 'Requested',
+                'state' => $state,
             ];
         }
 
@@ -73,27 +75,45 @@ class EnrollmentController extends Controller
     }
 
 
-
-
-
-
-
-    public function setGrade($studentId, $subjectId, $grade, $score, $state)
+    public function setGrade(Request $request)
     {
-        $response = $this->checkStudentExists($studentId);
+        $data = $request->input('data');
 
-        if ($response->getStatusCode() !== 200) {
-            return $response;
-        }
+        //  studentID-Subjectcode-classwork-final-grade-state
 
-        DB::table('enrolment')
-            ->where('student_id', $studentId)
-            ->where('subject_code', $subjectId)
+        foreach ($data as $row) {
+            $studentID = $row['student_id'];
+            $subjectCode = $row['subject_code'];
+            $classwork = $row['classwork'];
+            $final = $row['final'];
+            $grade = $row['grade'];
+            $score = $row['score'];
+            $state = $row['state'];
+            $examState = $row['exam_state'];
+
+            // Add each row to the insert data array
+            $updatedData[] = [
+                'classwork' => $classwork,
+                'final' => $final,
+                'grade' => $grade,
+                'state' => $state,
+                'score' =>$score,
+                'exam_state' => $examState, 
+            ];
+           DB::table('enrolment')
+            ->where('student_id', $studentID)
+            ->where('subject_code', $subjectCode)
             ->update([
+                'classwork' => $classwork,
+                'final' => $final,
                 'grade' => $grade,
                 'score' => $score,
                 'state' => $state,
+                'exam_state' => $examState,
             ]);
+        }
+
+       // return response()->Json($updatedData);
         return response()->Json('update is done');
     }
 
@@ -121,14 +141,40 @@ class EnrollmentController extends Controller
         $data = $request->input('data');
         foreach ($data as $row) {
             $studentId = $row['student_id'];
-             $subjectCode = $row['subject_code'];
-             $enrolmentState =$row['state'];
-             // Add each row to the insert data array
-             DB::table('enrolment')
-            ->where('student_id', $studentId)
-            ->where('subject_code', $subjectCode)
-            ->update(['state'=>$enrolmentState]); 
-         }
-         return response()->json(['message' => 'Data updated successfully']);
+            $subjectCode = $row['subject_code'];
+            $enrolmentState = $row['state'];
+            // Add each row to the insert data array
+            DB::table('enrolment')
+                ->where('student_id', $studentId)
+                ->where('subject_code', $subjectCode)
+                ->update(['state' => $enrolmentState]);
+        }
+        return response()->json(['message' => 'Data updated successfully']);
     }
+
+
+    public function studentData($student_id)
+    {
+        $firstBOX = DB::select('SELECT us.user_name, st.national_id, st.telephone, st.accepted_hours, st.passed_subjects, st.student_level, st.college_state, st.student_gpa
+        FROM user AS us
+        JOIN student AS st
+        ON st.user_id=us.user_id
+        WHERE st.student_id =:student_id', ['student_id' => $student_id]);
+
+        $secondBOX = DB::select('SELECT en.semester, en.subject_code, en.classwork, en.final, en.grade, en.state, en.exam_state
+               FROM student AS st
+               JOIN enrolment AS en
+               ON en.student_id=st.student_id
+               WHERE en.student_id =:student_id', ['student_id' => $student_id]);
+
+        $data = [
+            'personalData' => $firstBOX,
+            'subjectsData' => $secondBOX,
+        ];
+
+        return response()->json($data);
+    }
+
+
+
 }
