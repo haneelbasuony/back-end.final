@@ -70,19 +70,20 @@ Route::get('advisor/enrolment/getRequest', [EnrollmentController::class, 'getReq
 //handelRequest (waiting GUI)
 Route::post('advisor/enrolment/handelRequest', [EnrollmentController::class, 'handelRequest']);
 
-// insert grades or update (OK)
-Route::put('advisor/enrolment/insertGrades', [EnrollmentController::class, 'setGrade']);
+// insert grades or update for each student (OK)
+Route::put('advisor/studentGrades/insertGrade', [EnrollmentController::class, 'setGrade']);
 
 //advisor get studnent data (OK)
 Route::get('advisor/studentData/{studentID}', [EnrollmentController::class, 'studentData']);
 
-// get students regestered in a 
-Route::get('advisor/student', [EnrollmentController::class, 'studentData']);
+//update student table (OK)
+Route::put('advisor/insertPersonal', [EnrollmentController::class, 'updateData']);
 
-
-// Upload CSV ok
+// Upload XLS (OK)
 Route::post('advisor/uploadCSV', [GradesController::class, 'importExcel']);
 
+// get students of a subject in a certain semester and a year
+Route::get('advisor/subjectGrades/getGrades/{subjectCode}/{semester}/{year}', [EnrollmentController::class, 'getGradesTableData']);
 
 
 //-------------Subject--------------------
