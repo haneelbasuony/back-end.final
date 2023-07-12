@@ -132,7 +132,6 @@ class EnrollmentController extends Controller
 
 
 
-
     public function getRequest()
     {
         $Request = DB::select('SELECT  us.user_name,e.student_id, e.subject_code, su.subject_name 
@@ -173,10 +172,12 @@ class EnrollmentController extends Controller
         ON st.user_id=us.user_id
         WHERE st.student_id =:student_id', ['student_id' => $student_id]);
 
-        $secondBOX = DB::select('SELECT en.semester, en.subject_code, en.classwork, en.final, en.grade, en.state, en.exam_state
+        $secondBOX = DB::select('SELECT en.semester, su.subject_name, en.classwork, en.final,en.score, en.grade, en.year, en.exam_state
                FROM student AS st
                JOIN enrolment AS en
                ON en.student_id=st.student_id
+               JOIN subject AS su
+               ON en.subject_code = su.subject_code
                WHERE en.student_id =:student_id', ['student_id' => $student_id]);
 
         $data = [

@@ -16,7 +16,9 @@ class SubjectController extends Controller
                 subject_hours,
                 subject_level,
                 Term,
-                status
+                status,
+                submition,
+                dropablitiy
                 FROM subject');
         return response()->Json($subjectStatus);
     }
@@ -27,15 +29,15 @@ class SubjectController extends Controller
         $data = $request->input('data');
         foreach ($data as $row) {
             $subjectCode = $row['subject_code'];
-             $subjectStatus = $row['status'];
-             // Add each row to the insert data array
-             DB::table('subject')
-            ->where('subject_code', $subjectCode)
-            ->update(['status'=>$subjectStatus]); 
-         }
+            $subjectStatus = $row['status'];
+            // Add each row to the insert data array
+            DB::table('subject')
+                ->where('subject_code', $subjectCode)
+                ->update(['status' => $subjectStatus]);
+        }
 
 
-         return response()->json(['message' => 'Data updated successfully']);
+        return response()->json(['message' => 'Data updated successfully']);
 
     }
 
