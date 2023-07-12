@@ -44,14 +44,12 @@ class SubjectController extends Controller
                 ->update(['status' => $subjectStatus]);
         }
 
-
         return response()->json(['message' => 'Data updated successfully']);
 
     }
 
     public function setRegestrationStatus($submition, $dropablitiy)
     {
-
         DB::table('subject')
             ->update([
                 'submition' => $submition,
