@@ -88,7 +88,7 @@ Route::get('advisor/subjectGrades/getGrades/{subjectCode}/{semester}/{year}', [E
 
 //-------------Subject--------------------
 //get all subject status(open or closed)
-Route::get('/ADDsubject/subjectStatus', [SubjectController::class, 'getStatus']);
+Route::get('advisor/subject/subjectStatus', [SubjectController::class, 'getStatus']);
 
 //post request to change subject state (open or closed) for advisor
 Route::post('/subject/updateRegestrationStatus/{submition}/{dropability}', [SubjectController::class, 'setRegestrationStatus']);
