@@ -10,21 +10,29 @@ class SubjectController extends Controller
 {
     public function getStatus()
     {
+        $regestirationStatus = DB::select('SELECT Distinct
+        submition,
+        dropablitiy
+        FROM subject');
+
         $subjectStatus = DB::select('SELECT
                 subject_code,
                 subject_name,
                 subject_hours,
                 subject_level,
                 Term,
-                status,
-                submition,
-                dropablitiy
+                status
                 FROM subject');
-        return response()->Json($subjectStatus);
+        $data = [
+            'regestirationStatus' => $regestirationStatus,
+            'subjectStatus' => $subjectStatus
+        ];
+
+        return response()->Json($data);
     }
 
 
-    public function setStatus(Request $request)
+    public function setSubjectStatus(Request $request)
     {
         $data = $request->input('data');
         foreach ($data as $row) {
@@ -41,6 +49,18 @@ class SubjectController extends Controller
 
     }
 
+    public function setRegestrationStatus($submition, $dropablitiy)
+    {
+
+        DB::table('subject')
+            ->update([
+                'submition' => $submition,
+                'dropablitiy' => $dropablitiy
+            ]);
+
+        return response()->json(['message' => 'Data updated successfully']);
+
+    }
 
 
 
