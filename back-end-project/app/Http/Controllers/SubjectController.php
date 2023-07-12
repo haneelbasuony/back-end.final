@@ -10,6 +10,12 @@ class SubjectController extends Controller
 {
     public function getStatus()
     {
+        $regestrationStatus = DB::select('SELECT distinct
+                submition,
+                dropablitiy
+                FROM subject     
+            ');
+                
         $subjectStatus = DB::select('SELECT
                 subject_code,
                 subject_name,
