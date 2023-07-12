@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 //-------User----------------------------
 //----------------------------------------
 // Comment: This route is for getting all users' data.
-Route::get('/user_index', [UserController::class, 'Index']);
+//Route::get('/user_index', [UserController::class, 'Index']);
 
 // Comment: This route is for authenticating a user by email and password.
 Route::get('/auth/{mail}/{password}', [UserController::class, 'Find_User']);
@@ -42,42 +42,51 @@ Route::get('/auth/{mail}/{password}', [UserController::class, 'Find_User']);
 //----------------------------------------
 
 // Comment: This route is for getting a student's profile image by ID.
-Route::get('/studentImage/{id}', [StudentController::class, 'getImage']);
+Route::get('student/Image/{id}', [StudentController::class, 'getImage']);
 
 // Comment: This route is for getting all grades of a student by ID.
-Route::get('/grades/{id}', [GradesController::class, 'All_Grades']);
+Route::get('student/grades/{id}', [GradesController::class, 'All_Grades']);
 
 // Comment: This route is for getting all grades of a student for a certain level by ID and level.
-Route::get('/grades/{id}/{level}', [GradesController::class, 'gradesLevel']);
+Route::get('student/grades/{id}/{level}', [GradesController::class, 'gradesLevel']);
 
 // Comment: This route is for getting the subject data (code, name, credit hour, state) for a student's enrollment in a certain term, identified by ID, level, and term.
-Route::get('/STUsubject/{id}', [EnrollmentController::class, 'termState']);
+Route::get('student/subject/{id}', [EnrollmentController::class, 'termState']);
 
 //Insert Enrolment OK
-Route::post('/studentRequest', [EnrollmentController::class, 'request']);
+Route::post('student/enrolmentState', [EnrollmentController::class, 'enrolmentState']);
 
 
 
 
 //-------Advisor--------------------------
 //----------------------------------------
-Route::get('/advisorImage/{id}', [AdvisorController::class, 'getImage']);
+// Get advisor image (OK)
+Route::get('advisor/Image/{id}', [AdvisorController::class, 'getImage']);
 
-//Show request
-Route::get('/enrolment/getRequest', [EnrollmentController::class, 'getRequest']);
+//Show request (waiting GUI)
+Route::get('advisor/enrolment/getRequest', [EnrollmentController::class, 'getRequest']);
 
-//handelRequest
-Route::post('/enrolment/handelRequest', [EnrollmentController::class, 'handelRequest']);
+//handelRequest (waiting GUI)
+Route::post('advisor/enrolment/handelRequest', [EnrollmentController::class, 'handelRequest']);
 
-// insert grades or update OK
-Route::put('/enrolment/insertGrades/{studentId}/{subjectId}/{grade}/{score}/{state}', [EnrollmentController::class, 'setGrade']);
+// insert grades or update for each student (OK)
+Route::put('advisor/studentGrades/insertGrade', [EnrollmentController::class, 'setGrade']);
 
-// Upload CSV
-Route::post('/uploadCSV', [GradesController::class, 'importExcel']);
+//advisor get studnent data (OK)
+Route::get('advisor/studentData/{studentID}', [EnrollmentController::class, 'studentData']);
+
+//update student table (OK)
+Route::put('advisor/insertPersonal', [EnrollmentController::class, 'updateData']);
+
+// Upload XLS (OK)
+Route::post('advisor/uploadCSV', [GradesController::class, 'importExcel']);
+
+// get students of a subject in a certain semester and a year
+Route::get('advisor/subjectGrades/getGrades/{subjectCode}/{semester}/{year}', [EnrollmentController::class, 'getGradesTableData']);
 
 
-
-//-------------Subject-------------------
+//-------------Subject--------------------
 //get all subject status(open or closed)
 Route::get('/ADDsubject/subjectStatus', [SubjectController::class, 'getStatus']);
 

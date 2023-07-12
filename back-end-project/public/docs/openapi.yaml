@@ -1,0 +1,2295 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/user_index:
+    get:
+      summary: "Get all users' names, email addresses, and passwords."
+      operationId: getAllUsersNamesEmailAddressesAndPasswords
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    user_name: 'هاني حاتم علي علي البسيوني'
+                    user_email: hanehatemelbasuony20@gmail.com
+                    user_password: 123456789
+                  -
+                    user_name: 'عبدالعزيز كرم'
+                    user_email: zizo.shaheen@gmail.com
+                    user_password: 123456789
+                  -
+                    user_name: 'مصطفي كريم'
+                    user_email: mostafa.kareem1000@gmail.com
+                    user_password: 123456789
+                  -
+                    user_name: 'محمد حسن'
+                    user_email: 24dc2d9eaf@boxmail.lol
+                    user_password: 123456789
+                  -
+                    user_name: 'هشام ظريف'
+                    user_email: hesham.zareef@gmail.com
+                    user_password: 123456789
+                  -
+                    user_name: 'مصطفي راضي'
+                    user_email: mostafaradii284@gmail.com
+                    user_password: 123456789
+                  -
+                    user_name: 'عبدالله فوزي عبد الستار '
+                    user_email: afas200030@gmail.com
+                    user_password: 123456789
+      tags:
+        - Endpoints
+      security: []
+  '/api/auth/{mail}/{password}':
+    get:
+      summary: 'Find a registered user with the given email address and password.'
+      operationId: findARegisteredUserWithTheGivenEmailAddressAndPassword
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                example: 'Not A Registered User GO BACK'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: mail
+        description: ''
+        example: aut
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: password
+        description: ''
+        example: "bP!$w';GG"
+        required: true
+        schema:
+          type: string
+  '/api/studentImage/{id}':
+    get:
+      summary: ''
+      operationId: getApiStudentImageId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Attempt to read property "data" on null'
+                  exception: ErrorException
+                  file: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\StudentController.php'
+                  line: 18
+                  trace:
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                      line: 250
+                      function: handleError
+                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\StudentController.php'
+                      line: 18
+                      function: 'Illuminate\Foundation\Bootstrap\{closure}'
+                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                      line: 54
+                      function: getImage
+                      class: App\Http\Controllers\StudentController
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                      line: 43
+                      function: callAction
+                      class: Illuminate\Routing\Controller
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 259
+                      function: dispatch
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 205
+                      function: runController
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 798
+                      function: run
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Routing\{closure}'
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 126
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 92
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 54
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 797
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 776
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 740
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 729
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 200
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                      line: 62
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\HandleCors
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 175
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 144
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 92
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 209
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 163
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 95
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 124
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 71
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 49
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                      line: 51
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                      line: 41
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 35
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 661
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 194
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Command\Command.php'
+                      line: 326
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 163
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                      line: 1063
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                      line: 320
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                      line: 174
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                      line: 102
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                      line: 155
+                      function: run
+                      class: Illuminate\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\artisan'
+                      line: 35
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
+                properties:
+                  message:
+                    type: string
+                    example: 'Attempt to read property "data" on null'
+                  exception:
+                    type: string
+                    example: ErrorException
+                  file:
+                    type: string
+                    example: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\StudentController.php'
+                  line:
+                    type: integer
+                    example: 18
+                  trace:
+                    type: array
+                    example:
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                        line: 250
+                        function: handleError
+                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\StudentController.php'
+                        line: 18
+                        function: 'Illuminate\Foundation\Bootstrap\{closure}'
+                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                        line: 54
+                        function: getImage
+                        class: App\Http\Controllers\StudentController
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                        line: 43
+                        function: callAction
+                        class: Illuminate\Routing\Controller
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 259
+                        function: dispatch
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 205
+                        function: runController
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 798
+                        function: run
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Routing\{closure}'
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 126
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 92
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 54
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 797
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 776
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 740
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 729
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 200
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                        line: 62
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\HandleCors
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 175
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 144
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 92
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 209
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 163
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 95
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 124
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 71
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 49
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                        line: 51
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                        line: 41
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 35
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 661
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 194
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Command\Command.php'
+                        line: 326
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 163
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                        line: 1063
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                        line: 320
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                        line: 174
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                        line: 102
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                        line: 155
+                        function: run
+                        class: Illuminate\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\artisan'
+                        line: 35
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
+                      properties:
+                        file:
+                          type: string
+                          example: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                        line:
+                          type: integer
+                          example: 250
+                        function:
+                          type: string
+                          example: handleError
+                        class:
+                          type: string
+                          example: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type:
+                          type: string
+                          example: '->'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the studentImage.'
+        example: quidem
+        required: true
+        schema:
+          type: string
+  '/api/grades/{id}':
+    get:
+      summary: ''
+      operationId: getApiGradesId
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                example: 'Student ID Invalid'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the grade.'
+        example: est
+        required: true
+        schema:
+          type: string
+  '/api/grades/{id}/{level}':
+    get:
+      summary: ''
+      operationId: getApiGradesIdLevel
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                example: 'Student ID Invalid'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the grade.'
+        example: consectetur
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: level
+        description: ''
+        example: quas
+        required: true
+        schema:
+          type: string
+  '/api/STUsubject/{id}':
+    get:
+      summary: ''
+      operationId: getApiSTUsubjectId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Student not found'
+                properties:
+                  error:
+                    type: string
+                    example: 'Student not found'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the STUsubject.'
+        example: iusto
+        required: true
+        schema:
+          type: string
+  /api/studentRequest:
+    post:
+      summary: ''
+      operationId: postApiStudentRequest
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/advisorImage/{id}':
+    get:
+      summary: ''
+      operationId: getApiAdvisorImageId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Attempt to read property "data" on null'
+                  exception: ErrorException
+                  file: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\AdvisorController.php'
+                  line: 18
+                  trace:
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                      line: 250
+                      function: handleError
+                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\AdvisorController.php'
+                      line: 18
+                      function: 'Illuminate\Foundation\Bootstrap\{closure}'
+                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                      line: 54
+                      function: getImage
+                      class: App\Http\Controllers\AdvisorController
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                      line: 43
+                      function: callAction
+                      class: Illuminate\Routing\Controller
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 259
+                      function: dispatch
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 205
+                      function: runController
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 798
+                      function: run
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Routing\{closure}'
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 126
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 92
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 54
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 797
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 776
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 740
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 729
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 200
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                      line: 62
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\HandleCors
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 175
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 144
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 92
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 209
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 163
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 95
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 124
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 71
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 49
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                      line: 51
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                      line: 41
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 35
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 661
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 194
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Command\Command.php'
+                      line: 326
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 163
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                      line: 1063
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                      line: 320
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                      line: 174
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                      line: 102
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                      line: 155
+                      function: run
+                      class: Illuminate\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\Study\back-end.final\back-end-project\artisan'
+                      line: 35
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
+                properties:
+                  message:
+                    type: string
+                    example: 'Attempt to read property "data" on null'
+                  exception:
+                    type: string
+                    example: ErrorException
+                  file:
+                    type: string
+                    example: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\AdvisorController.php'
+                  line:
+                    type: integer
+                    example: 18
+                  trace:
+                    type: array
+                    example:
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                        line: 250
+                        function: handleError
+                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\app\Http\Controllers\AdvisorController.php'
+                        line: 18
+                        function: 'Illuminate\Foundation\Bootstrap\{closure}'
+                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                        line: 54
+                        function: getImage
+                        class: App\Http\Controllers\AdvisorController
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                        line: 43
+                        function: callAction
+                        class: Illuminate\Routing\Controller
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 259
+                        function: dispatch
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 205
+                        function: runController
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 798
+                        function: run
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Routing\{closure}'
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 126
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 92
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 54
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 797
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 776
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 740
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 729
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 200
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                        line: 62
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\HandleCors
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 175
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 144
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 92
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 209
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 163
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 95
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 124
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 71
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 49
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                        line: 51
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                        line: 41
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 35
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 661
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 194
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Command\Command.php'
+                        line: 326
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 163
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                        line: 1063
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                        line: 320
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\symfony\console\Application.php'
+                        line: 174
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                        line: 102
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                        line: 155
+                        function: run
+                        class: Illuminate\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\Study\back-end.final\back-end-project\artisan'
+                        line: 35
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
+                      properties:
+                        file:
+                          type: string
+                          example: 'D:\Study\back-end.final\back-end-project\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                        line:
+                          type: integer
+                          example: 250
+                        function:
+                          type: string
+                          example: handleError
+                        class:
+                          type: string
+                          example: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type:
+                          type: string
+                          example: '->'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the advisorImage.'
+        example: et
+        required: true
+        schema:
+          type: string
+  /api/enrolment/getRequest:
+    get:
+      summary: ''
+      operationId: getApiEnrolmentGetRequest
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/enrolment/handelRequest:
+    post:
+      summary: ''
+      operationId: postApiEnrolmentHandelRequest
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/enrolment/insertGrades/{studentId}/{subjectId}/{grade}/{score}/{state}':
+    put:
+      summary: ''
+      operationId: putApiEnrolmentInsertGradesStudentIdSubjectIdGradeScoreState
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: studentId
+        description: ''
+        example: ut
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: subjectId
+        description: ''
+        example: placeat
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: grade
+        description: ''
+        example: dolor
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: score
+        description: ''
+        example: sapiente
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: state
+        description: ''
+        example: eaque
+        required: true
+        schema:
+          type: string
+  /api/uploadCSV:
+    post:
+      summary: ''
+      operationId: postApiUploadCSV
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/ADDsubject/subjectStatus:
+    get:
+      summary: ''
+      operationId: getApiADDsubjectSubjectStatus
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    subject_code: GEN0801
+                    subject_name: 'Math 1'
+                    subject_hours: 4
+                    subject_level: 0
+                    Term: 1
+                    status: Open
+                  -
+                    subject_code: GEN0802
+                    subject_name: 'Introduction to programming'
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 1
+                    status: Close
+                  -
+                    subject_code: GEN0803
+                    subject_name: English
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 1
+                    status: Open
+                  -
+                    subject_code: GEN0804
+                    subject_name: Chemistry
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN0805
+                    subject_name: 'Engineering Drawing'
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN0806
+                    subject_name: 'Linear algebra'
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN0807
+                    subject_name: 'Physics 1'
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN0808
+                    subject_name: 'Economics of Engineering'
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN0809
+                    subject_name: Humanities
+                    subject_hours: 2
+                    subject_level: 0
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN0810
+                    subject_name: 'Italian Language'
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN0811
+                    subject_name: 'Production Engineering '
+                    subject_hours: 3
+                    subject_level: 0
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN1801
+                    subject_name: 'Math 2 '
+                    subject_hours: 4
+                    subject_level: 1
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN1802
+                    subject_name: 'Physics 2 '
+                    subject_hours: 3
+                    subject_level: 1
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN1803
+                    subject_name: 'Analogue electronic I'
+                    subject_hours: 3
+                    subject_level: 1
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN1804
+                    subject_name: 'Circuit Theory '
+                    subject_hours: 3
+                    subject_level: 1
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN1805
+                    subject_name: 'Human rights '
+                    subject_hours: 2
+                    subject_level: 1
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN1806
+                    subject_name: 'Environmental studies'
+                    subject_hours: 2
+                    subject_level: 1
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN1807
+                    subject_name: 'Electronic systems and digital electronics'
+                    subject_hours: 4
+                    subject_level: 1
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN1808
+                    subject_name: 'Electromagnetic Fields and wave propagation '
+                    subject_hours: 4
+                    subject_level: 1
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN1809
+                    subject_name: 'Basic Mechanics '
+                    subject_hours: 3
+                    subject_level: 1
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN1810
+                    subject_name: 'Programming Techniques '
+                    subject_hours: 3
+                    subject_level: 1
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN1811
+                    subject_name: 'Analogue electronic II'
+                    subject_hours: 3
+                    subject_level: 1
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN2801
+                    subject_name: 'Probability '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN2802
+                    subject_name: 'Signal theory '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN2803
+                    subject_name: 'Data structures and algorithms '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN2804
+                    subject_name: 'Complex analysis '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN2805
+                    subject_name: 'Computer architecture '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN2806
+                    subject_name: 'Discrete math '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN2807
+                    subject_name: 'Microprocessors and microcontrollers '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN2808
+                    subject_name: 'Communication technologies '
+                    subject_hours: 4
+                    subject_level: 2
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN2809
+                    subject_name: 'Electronic Measurement '
+                    subject_hours: 3
+                    subject_level: 2
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN2810
+                    subject_name: 'Technical writing'
+                    subject_hours: 2
+                    subject_level: 2
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN3801
+                    subject_name: 'Control system design'
+                    subject_hours: 4
+                    subject_level: 3
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN3802
+                    subject_name: 'Digital communications'
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN3803
+                    subject_name: 'Numerical methods'
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN3804
+                    subject_name: 'Data base'
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN3805
+                    subject_name: 'Software engineering'
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN3806
+                    subject_name: 'Communication networks'
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN3807
+                    subject_name: 'Operating systems'
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN3808
+                    subject_name: 'Object oriented programming'
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN3809
+                    subject_name: Antennas
+                    subject_hours: 3
+                    subject_level: 3
+                    Term: 2
+                    status: null
+                  -
+                    subject_code: GEN4801
+                    subject_name: 'Digital signal processing'
+                    subject_hours: 3
+                    subject_level: 4
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN4802
+                    subject_name: 'Information theory and coding'
+                    subject_hours: 3
+                    subject_level: 4
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN4803
+                    subject_name: 'Graduation Project I'
+                    subject_hours: 2
+                    subject_level: 4
+                    Term: 1
+                    status: null
+                  -
+                    subject_code: GEN4804
+                    subject_name: 'Graduation Project II'
+                    subject_hours: 2
+                    subject_level: 4
+                    Term: 2
+                    status: null
+      tags:
+        - Endpoints
+      security: []
+  /api/subject/updateStatus:
+    post:
+      summary: ''
+      operationId: postApiSubjectUpdateStatus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
