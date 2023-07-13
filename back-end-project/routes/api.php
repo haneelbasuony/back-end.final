@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GradesController;
 use App\Http\Controllers\StudentController;
@@ -56,7 +57,8 @@ Route::get('student/subject/{id}', [EnrollmentController::class, 'termState']);
 //Insert Enrolment OK
 Route::post('student/enrolmentState', [EnrollmentController::class, 'enrolmentState']);
 
-
+// student Notfication Menu
+Route::get('student/getnotfication/{studentID}', [NotificationController::class, 'getStudentNotification']);
 
 
 //-------Advisor--------------------------
@@ -84,6 +86,11 @@ Route::post('advisor/uploadCSV', [GradesController::class, 'importExcel']);
 
 // get students of a subject in a certain semester and a year
 Route::get('advisor/subjectGrades/getGrades/{subjectCode}/{semester}/{year}', [EnrollmentController::class, 'getGradesTableData']);
+
+// ADvisor Notfication Menu
+Route::get('advisor/getnotfication/{advisorId}', [NotificationController::class, 'getAdvisorNotification']);
+
+
 
 
 //-------------Subject--------------------

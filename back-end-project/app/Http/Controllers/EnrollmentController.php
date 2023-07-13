@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\NotificationController;
 
 class EnrollmentController extends Controller
 {
@@ -61,6 +62,17 @@ class EnrollmentController extends Controller
             $id = $row['student_id'];
             $subject = $row['subject_code'];
             $state = $row['state'];
+
+            $trialadvisor_id = DB::select('SELECT gr.advisor_id
+            FROM `group` AS gr
+            INNER JOIN student AS st
+            ON gr.group_id = st.group_id
+            WHERE st.student_id = :id', [$id]);
+
+            $advisor_id = $trialadvisor_id[0]->advisor_id;
+
+            $notificationController = new NotificationController();
+            $notificationController->addAdvisorNotification($advisor_id, 'You have an unseen subject request from ' . $id);
 
             $trialCount = DB::select('SELECT COUNT(student_id) As count FROM enrolment
             WHERE student_id = :id AND subject_code= :subjectCode', ['id' => $id, 'subjectCode' => $subject]);
@@ -154,7 +166,15 @@ class EnrollmentController extends Controller
             $studentId = $row['student_id'];
             $subjectCode = $row['subject_code'];
             $enrolmentState = $row['state'];
+
+            $trialsubjectName = DB::select('SELECT subject_name
+           FROM subject
+           WHERE subject_code = :subjecCode', ['subjecCode' => $subjectCode])[0]->subject_name;
+
+            $notificationController = new NotificationController();
+            $notificationController->addStudentNotification($studentId, 'Your Request For Subject ' . $trialsubjectName . ' is ' . $enrolmentState);
             // Add each row to the insert data array
+
             DB::table('enrolment')
                 ->where('student_id', $studentId)
                 ->where('subject_code', $subjectCode)
