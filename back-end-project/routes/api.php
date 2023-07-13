@@ -101,6 +101,6 @@ Route::get('advisor/subject/subjectStatus', [SubjectController::class, 'getStatu
 Route::post('/subject/updateRegestrationStatus/{submition}/{dropability}', [SubjectController::class, 'setRegestrationStatus']);
 
 
-Route::post('/subject/updateSubjectStatusStatus', [SubjectController::class, 'setSubjectStatusStatus']);
+Route::post('/subject/update/SubjectStatus', [SubjectController::class, 'setSubjectStatus']);
 
 
