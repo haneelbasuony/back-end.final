@@ -55,19 +55,20 @@ class EnrollmentController extends Controller
 
         $insertData = [];
 
-        // Prepare the data for insertion
         foreach ($data as $row) {
 
 
             $id = $row['student_id'];
             $subject = $row['subject_code'];
             $state = $row['state'];
+            $cureentsubjectYear = DB::select('SELECT `year` FROM `subject`')[0]->year;
+            $currnetsubjectSemester = DB::select('SELECT `semester` FROM `subject`')[0]->semester;
 
             $trialadvisor_id = DB::select('SELECT gr.advisor_id
-            FROM `group` AS gr
-            INNER JOIN student AS st
-            ON gr.group_id = st.group_id
-            WHERE st.student_id = :id', [$id]);
+               FROM `group` AS gr
+               INNER JOIN student AS st
+               ON gr.group_id = st.group_id
+               WHERE st.student_id = :id', [$id]);
 
             $advisor_id = $trialadvisor_id[0]->advisor_id;
 
@@ -75,22 +76,59 @@ class EnrollmentController extends Controller
             $notificationController->addAdvisorNotification($advisor_id, 'You have an unseen subject request from ' . $id);
 
             $trialCount = DB::select('SELECT COUNT(student_id) As count FROM enrolment
-            WHERE student_id = :id AND subject_code= :subjectCode', ['id' => $id, 'subjectCode' => $subject]);
-
+               WHERE student_id = :id AND subject_code= :subjectCode', ['id' => $id, 'subjectCode' => $subject]);
             $count = $trialCount[0]->count;
-            // Add each row to the insert data array
-            $insertData[] = [
-                'student_id' => $id,
-                'subject_code' => $subject,
-                'state' => $state,
-                'trial' => $count,
-            ];
+
+            if (
+                DB::table('enrolment')
+                    ->where('student_id', $id)
+                    ->where('subject_code', $subject)
+                    ->exists()
+            ) {
+                if (
+                    DB::table('enrolment')
+                        ->join('subject', 'enrolment.subject_code', '=', 'subject.subject_code')
+                        ->where(
+                            'enrolment.year',
+                            $cureentsubjectYear
+                        )
+                        ->where(
+                            'enrolment.semester',
+                            $currnetsubjectSemester
+                        )
+                        ->exists()
+                ) {
+                    DB::table('enrolment')
+                        ->where('student_id', $id)
+                        ->where('subject_code', $subject)
+                        ->update([
+                            'state' => $state,
+                        ]);
+                } else {
+                    $insertData[] = [
+                        'student_id' => $id,
+                        'subject_code' => $subject,
+                        'state' => $state,
+                        'trial' => $count,
+                        'year' => $cureentsubjectYear,
+                        'semester' => $currnetsubjectSemester,
+                    ];
+                    DB::table('enrolment')->insert($insertData);
+
+                }
+            } else {
+                $insertData[] = [
+                    'student_id' => $id,
+                    'subject_code' => $subject,
+                    'state' => $state,
+                    'trial' => '0',
+                    'year' => $cureentsubjectYear,
+                    'semester' => $currnetsubjectSemester,
+                ];
+                DB::table('enrolment')->insert($insertData);
+            }
 
         }
-
-        // Insert the rows into the enrolment table
-        DB::table('enrolment')->insert($insertData);
-
         // Return a JSON response indicating that the data was inserted successfully
         return response()->json(['message' => 'Data inserted successfully']);
 
@@ -255,6 +293,21 @@ class EnrollmentController extends Controller
 
 
     }
+
+    public function getRequestedOrApproved($student_id)
+    {
+        $Request = DB::select('SELECT   su.subject_code, su.subject_name , su.subject_hours 
+        FROM enrolment AS e 
+        INNER JOIN subject AS su
+        ON su.subject_code = e.subject_code
+        WHERE e.state = "Requested" OR e.state = "Approved"
+        AND e.student_id =:student_id', ['student_id' => $student_id] ) ;
+
+        return response()->Json($Request);
+    }
+
+
+
 
 
 

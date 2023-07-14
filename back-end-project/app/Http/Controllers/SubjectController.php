@@ -37,7 +37,7 @@ class SubjectController extends Controller
         $data = $request->input('data');
         foreach ($data as $row) {
             $subjectCode = $row['subject_code'];
-            $subjectStatus = $row['status'];
+            $subjectStatus = $row['state'];
             // Add each row to the insert data array
             DB::table('subject')
                 ->where('subject_code', $subjectCode)

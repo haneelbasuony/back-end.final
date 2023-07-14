@@ -60,6 +60,9 @@ Route::post('student/enrolmentState', [EnrollmentController::class, 'enrolmentSt
 // student Notfication Menu
 Route::get('student/getnotfication/{studentID}', [NotificationController::class, 'getStudentNotification']);
 
+//Show request student requested subjects 
+Route::get('student/enrolment/getRequests/{id}', [EnrollmentController::class, 'getRequestedOrApproved']);
+
 
 //-------Advisor--------------------------
 //----------------------------------------
