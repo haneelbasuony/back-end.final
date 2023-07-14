@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2023 at 01:31 PM
+-- Generation Time: Jul 14, 2023 at 01:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,6 +57,25 @@ CREATE TABLE `advisor_notfication` (
   `notfication_date` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `advisor_notfication`
+--
+
+INSERT INTO `advisor_notfication` (`advisor_id`, `message`, `read_info`, `notfication_date`) VALUES
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:10:19.201767'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:12:02.867896'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:13:09.122283'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:13:52.493919'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:14:17.086451'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:17:11.720095'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:17:47.815504'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:18:55.184574'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:19:03.828917'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:19:16.360869'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:19:29.437657'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:20:23.578087'),
+(101, 'You have an unseen subject request from 21044', 'Not Read', '2023-07-14 11:20:43.622740');
+
 -- --------------------------------------------------------
 
 --
@@ -82,7 +101,8 @@ CREATE TABLE `enrolment` (
 --
 
 INSERT INTO `enrolment` (`student_id`, `subject_code`, `trial`, `grade`, `score`, `state`, `classwork`, `final`, `semester`, `year`, `exam_state`) VALUES
-(21044, 'GEN0801', 0, NULL, NULL, 'Accepted', NULL, NULL, NULL, NULL, NULL),
+(21044, 'GEN0801', 0, NULL, NULL, 'Requested', NULL, NULL, 'Summer', '2022-2023', NULL),
+(21044, 'GEN0801', 1, NULL, NULL, 'Drop', NULL, NULL, 'Fall', '2021-2022', NULL),
 (21044, 'GEN0802', 0, 80, 'B', 'Finished', 0, 0, '0', '', ''),
 (21044, 'GEN0803', 0, 70, 'C', 'Finished', 0, 0, '0', '', ''),
 (21044, 'GEN0804', 0, 84, 'B+', 'Finished', 0, 0, '0', '', ''),
@@ -119,8 +139,7 @@ INSERT INTO `enrolment` (`student_id`, `subject_code`, `trial`, `grade`, `score`
 (21044, 'GEN3805', 0, 87, 'B+', 'Finished', 0, 0, '0', '', ''),
 (21044, 'GEN3808', 0, 78, 'B-', 'Finished', 0, 0, '0', '', ''),
 (21044, 'GEN3809', 0, 98, 'A+', 'Finished', 0, 0, '0', '', ''),
-(21044, 'GEN4801', 0, NULL, NULL, 'Approved', 0, 0, '0', '', ''),
-(21045, 'GEN0801', 0, NULL, NULL, 'Rejected', NULL, NULL, NULL, NULL, NULL);
+(21044, 'GEN4801', 0, NULL, NULL, 'Approved', 0, 0, '0', '', '');
 
 -- --------------------------------------------------------
 
@@ -262,59 +281,61 @@ CREATE TABLE `subject` (
   `status` varchar(100) DEFAULT NULL,
   `submition` varchar(100) NOT NULL,
   `dropablitiy` varchar(100) NOT NULL,
-  `instructor_id` int(50) DEFAULT NULL
+  `instructor_id` int(50) DEFAULT NULL,
+  `semester` varchar(255) NOT NULL,
+  `year` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`subject_code`, `subject_name`, `subject_hours`, `subject_level`, `Term`, `status`, `submition`, `dropablitiy`, `instructor_id`) VALUES
-('GEN0801', 'Math 1', 4, 0, 1, 'Open', 'Closed', 'Closed', 1),
-('GEN0802', 'Introduction to programming', 3, 0, 1, 'Close', 'Closed', 'Closed', NULL),
-('GEN0803', 'English', 3, 0, 1, 'Open', 'Closed', 'Closed', NULL),
-('GEN0804', 'Chemistry', 3, 0, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN0805', 'Engineering Drawing', 3, 0, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN0806', 'Linear algebra', 3, 0, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN0807', 'Physics 1', 3, 0, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN0808', 'Economics of Engineering', 3, 0, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN0809', 'Humanities', 2, 0, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN0810', 'Italian Language', 3, 0, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN0811', 'Production Engineering ', 3, 0, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN1801', 'Math 2 ', 4, 1, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN1802', 'Physics 2 ', 3, 1, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN1803', 'Analogue electronic I', 3, 1, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN1804', 'Circuit Theory ', 3, 1, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN1805', 'Human rights ', 2, 1, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN1806', 'Environmental studies', 2, 1, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN1807', 'Electronic systems and digital electronics', 4, 1, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN1808', 'Electromagnetic Fields and wave propagation ', 4, 1, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN1809', 'Basic Mechanics ', 3, 1, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN1810', 'Programming Techniques ', 3, 1, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN1811', 'Analogue electronic II', 3, 1, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN2801', 'Probability ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN2802', 'Signal theory ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN2803', 'Data structures and algorithms ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN2804', 'Complex analysis ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN2805', 'Computer architecture ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN2806', 'Discrete math ', 3, 2, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN2807', 'Microprocessors and microcontrollers ', 3, 2, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN2808', 'Communication technologies ', 4, 2, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN2809', 'Electronic Measurement ', 3, 2, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN2810', 'Technical writing', 2, 2, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN3801', 'Control system design', 4, 3, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN3802', 'Digital communications', 3, 3, 1, NULL, 'Closed', 'Closed', 4),
-('GEN3803', 'Numerical methods', 3, 3, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN3804', 'Data base', 3, 3, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN3805', 'Software engineering', 3, 3, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN3806', 'Communication networks', 3, 3, 2, NULL, 'Closed', 'Closed', 4),
-('GEN3807', 'Operating systems', 3, 3, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN3808', 'Object oriented programming', 3, 3, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN3809', 'Antennas', 3, 3, 2, NULL, 'Closed', 'Closed', NULL),
-('GEN4801', 'Digital signal processing', 3, 4, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN4802', 'Information theory and coding', 3, 4, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN4803', 'Graduation Project I', 2, 4, 1, NULL, 'Closed', 'Closed', NULL),
-('GEN4804', 'Graduation Project II', 2, 4, 2, NULL, 'Closed', 'Closed', NULL);
+INSERT INTO `subject` (`subject_code`, `subject_name`, `subject_hours`, `subject_level`, `Term`, `status`, `submition`, `dropablitiy`, `instructor_id`, `semester`, `year`) VALUES
+('GEN0801', 'Math 1', 4, 0, 1, 'Open', 'Closed', 'Closed', 1, 'Summer', '2022-2023'),
+('GEN0802', 'Introduction to programming', 3, 0, 1, 'Close', 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0803', 'English', 3, 0, 1, 'Open', 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0804', 'Chemistry', 3, 0, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0805', 'Engineering Drawing', 3, 0, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0806', 'Linear algebra', 3, 0, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0807', 'Physics 1', 3, 0, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0808', 'Economics of Engineering', 3, 0, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0809', 'Humanities', 2, 0, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0810', 'Italian Language', 3, 0, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN0811', 'Production Engineering ', 3, 0, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1801', 'Math 2 ', 4, 1, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1802', 'Physics 2 ', 3, 1, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1803', 'Analogue electronic I', 3, 1, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1804', 'Circuit Theory ', 3, 1, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1805', 'Human rights ', 2, 1, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1806', 'Environmental studies', 2, 1, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1807', 'Electronic systems and digital electronics', 4, 1, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1808', 'Electromagnetic Fields and wave propagation ', 4, 1, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1809', 'Basic Mechanics ', 3, 1, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1810', 'Programming Techniques ', 3, 1, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN1811', 'Analogue electronic II', 3, 1, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2801', 'Probability ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2802', 'Signal theory ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2803', 'Data structures and algorithms ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2804', 'Complex analysis ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2805', 'Computer architecture ', 3, 2, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2806', 'Discrete math ', 3, 2, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2807', 'Microprocessors and microcontrollers ', 3, 2, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2808', 'Communication technologies ', 4, 2, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2809', 'Electronic Measurement ', 3, 2, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN2810', 'Technical writing', 2, 2, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN3801', 'Control system design', 4, 3, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN3802', 'Digital communications', 3, 3, 1, NULL, 'Closed', 'Closed', 4, 'Summer', '2022-2023'),
+('GEN3803', 'Numerical methods', 3, 3, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN3804', 'Data base', 3, 3, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN3805', 'Software engineering', 3, 3, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN3806', 'Communication networks', 3, 3, 2, NULL, 'Closed', 'Closed', 4, 'Summer', '2022-2023'),
+('GEN3807', 'Operating systems', 3, 3, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN3808', 'Object oriented programming', 3, 3, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN3809', 'Antennas', 3, 3, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN4801', 'Digital signal processing', 3, 4, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN4802', 'Information theory and coding', 3, 4, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN4803', 'Graduation Project I', 2, 4, 1, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023'),
+('GEN4804', 'Graduation Project II', 2, 4, 2, NULL, 'Closed', 'Closed', NULL, 'Summer', '2022-2023');
 
 -- --------------------------------------------------------
 
