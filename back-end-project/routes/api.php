@@ -101,7 +101,7 @@ Route::get('advisor/getnotfication/{advisorId}', [NotificationController::class,
 Route::get('advisor/subject/subjectStatus', [SubjectController::class, 'getStatus']);
 
 //post request to change subject state (open or closed) for advisor
-Route::post('/subject/updateRegestrationStatus/{submition}/{dropability}', [SubjectController::class, 'setRegestrationStatus']);
+Route::post('/subject/updateRegestrationStatus/{submition}/{dropability}/{year}/{semester}', [SubjectController::class, 'setRegestrationStatus']);
 
 
 Route::post('/subject/update/SubjectStatus', [SubjectController::class, 'setSubjectStatus']);

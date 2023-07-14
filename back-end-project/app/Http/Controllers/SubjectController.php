@@ -12,7 +12,9 @@ class SubjectController extends Controller
     {
         $regestirationStatus = DB::select('SELECT Distinct
         submition,
-        dropablitiy
+        dropablitiy,
+        year,
+        semester
         FROM subject');
 
         $subjectStatus = DB::select('SELECT
@@ -49,13 +51,15 @@ class SubjectController extends Controller
 
     }
 
-    public function setRegestrationStatus($submition, $dropablitiy)
+    public function setRegestrationStatus($submition, $dropablitiy,$year,$semester)
     {
 
         DB::table('subject')
             ->update([
                 'submition' => $submition,
-                'dropablitiy' => $dropablitiy
+                'dropablitiy' => $dropablitiy,
+                'year' => $year,
+                'semester' => $semester
             ]);
 
         return response()->json(['message' => 'Data updated successfully']);
