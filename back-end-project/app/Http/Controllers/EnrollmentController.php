@@ -141,27 +141,16 @@ class EnrollmentController extends Controller
 
         //  studentID-Subjectcode-classwork-final-grade-state
 
-
-
         foreach ($data as $row) {
-            $studentID = $row['student_id'];
-            $subjectCode = $row['subject_code'];
-            $classwork = $row['classwork'];
+            $studentID = $row['studentID'];
+            $subjectCode = $row['courseCode'];
+            $classwork = $row['classWork'];
             $final = $row['final'];
             $grade = $row['grade'];
             $score = $row['score'];
-            $state = $row['state'];
-            $examState = $row['exam_state'];
+            $examState = $row['examState'];
 
             // Add each row to the insert data array
-            $updatedData[] = [
-                'classwork' => $classwork,
-                'final' => $final,
-                'grade' => $grade,
-                'state' => $state,
-                'score' => $score,
-                'exam_state' => $examState,
-            ];
             DB::table('enrolment')
                 ->where('student_id', $studentID)
                 ->where('subject_code', $subjectCode)
@@ -170,7 +159,7 @@ class EnrollmentController extends Controller
                     'final' => $final,
                     'grade' => $grade,
                     'score' => $score,
-                    'state' => $state,
+                    'state' => 'Finished',
                     'exam_state' => $examState,
                 ]);
         }
@@ -230,7 +219,7 @@ class EnrollmentController extends Controller
         ON st.user_id=us.user_id
         WHERE st.student_id =:student_id', ['student_id' => $student_id]);
 
-        $secondBOX = DB::select('SELECT en.semester, su.subject_name, en.classwork, en.final,en.score, en.grade, en.year, en.exam_state
+        $secondBOX = DB::select('SELECT en.semester, su.subject_name, en.classwork, en.final,en.score, en.grade, en.year, en.exam_state, su.subject_code
                FROM student AS st
                JOIN enrolment AS en
                ON en.student_id=st.student_id
@@ -277,7 +266,7 @@ class EnrollmentController extends Controller
 
     public function getGradesTableData($subject_code, $semester, $year)
     {
-        $data = DB::select('SELECT  su.subject_name, us.user_name, en.student_id,  en.grade, en.score, en.classwork, en.final, en.exam_state 
+        $data = DB::select('SELECT  su.subject_name, us.user_name, en.student_id,  en.grade, en.score, en.classwork, en.final, en.exam_state ,su.subject_code
       FROM enrolment AS en
       INNER JOIN student AS st
       ON st.student_id=en.student_id
@@ -300,7 +289,7 @@ class EnrollmentController extends Controller
         FROM enrolment AS e 
         INNER JOIN subject AS su
         ON su.subject_code = e.subject_code
-        WHERE e.state = "Requested" OR e.state = "Approved"
+        WHERE e.state = "Requested"
         AND e.student_id =:student_id', ['student_id' => $student_id] ) ;
 
         return response()->Json($Request);

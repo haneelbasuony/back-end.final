@@ -46,7 +46,7 @@ class UserController extends Controller
         INNER JOIN user
         ON student.user_id = user.user_id
         WHERE user_email=:mail', ['mail' => $mail]);
-                $studentData = DB::select('SELECT st.student_id, u.user_name ,st.student_level,st.student_gpa,u.priv_id
+                $studentData = DB::select('SELECT st.student_id, u.user_name ,st.student_level,st.student_gpa,u.priv_id, st.passed_subjects, st.accepted_hours
          FROM student AS st
          INNER JOIN user AS u ON st.user_id =u.user_id
          WHERE st.student_id =:id ', ['id' => $student_id[0]->student_id]);

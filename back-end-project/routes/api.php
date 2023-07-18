@@ -7,7 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\SubjectController;
-
+use App\Http\Controllers\GraphController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -107,3 +107,11 @@ Route::post('/subject/updateRegestrationStatus/{submition}/{dropability}/{year}/
 Route::post('/subject/update/SubjectStatus', [SubjectController::class, 'setSubjectStatus']);
 
 
+// ---------------Graph--------------
+//---------------------------------------
+
+//grap data and statistics about each subject
+Route::get('graph/bySubject/{subject_code}/{year}/{semester}', [GraphController::class, 'graphBySubject']);
+
+//statisctics about graduated studients in a certain semester
+Route::get('graph/byStudents/{year}/{semester}', [GraphController::class, 'graphByStudents']);

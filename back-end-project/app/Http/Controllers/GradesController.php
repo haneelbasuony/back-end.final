@@ -27,6 +27,7 @@ class GradesController extends Controller
             // Retrieve all grades of the student
             $grade = DB::select('SELECT
                 su.subject_name,
+                su.subject_level,
                 e.grade,
                 e.score
                 FROM enrolment AS e
