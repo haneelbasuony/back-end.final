@@ -32,7 +32,7 @@ class EnrollmentController extends Controller
 
         // Retrieve subject information and enrollment data for the student in the given term and level
         $leveData = DB::select(
-            'SELECT s.subject_level, s.Term ,s.subject_code,s.subject_name ,s.subject_hours,e.grade, s.status ,e.state AS enrolment_state
+            'SELECT s.submition, s.dropablitiy, s.subject_level, s.Term ,s.subject_code,s.subject_name ,s.subject_hours,e.grade, s.status ,e.state AS enrolment_state
         FROM subject s
         LEFT OUTER JOIN enrolment e
         ON s.subject_code = e.subject_code AND e.student_id = :id',
@@ -148,6 +148,7 @@ class EnrollmentController extends Controller
             $final = $row['final'];
             $grade = $row['grade'];
             $score = $row['score'];
+            $state = $row['state'];
             $examState = $row['examState'];
 
             // Add each row to the insert data array
@@ -159,7 +160,7 @@ class EnrollmentController extends Controller
                     'final' => $final,
                     'grade' => $grade,
                     'score' => $score,
-                    'state' => 'Finished',
+                    'state' => $state,
                     'exam_state' => $examState,
                 ]);
         }
@@ -219,7 +220,7 @@ class EnrollmentController extends Controller
         ON st.user_id=us.user_id
         WHERE st.student_id =:student_id', ['student_id' => $student_id]);
 
-        $secondBOX = DB::select('SELECT en.semester, su.subject_name, en.classwork, en.final,en.score, en.grade, en.year, en.exam_state, su.subject_code
+        $secondBOX = DB::select('SELECT en.semester, su.subject_name, en.classwork, en.final, en.score, en.grade, en.year, en.exam_state, su.subject_code, e.state
                FROM student AS st
                JOIN enrolment AS en
                ON en.student_id=st.student_id
@@ -266,7 +267,7 @@ class EnrollmentController extends Controller
 
     public function getGradesTableData($subject_code, $semester, $year)
     {
-        $data = DB::select('SELECT  su.subject_name, us.user_name, en.student_id,  en.grade, en.score, en.classwork, en.final, en.exam_state ,su.subject_code
+        $data = DB::select('SELECT  su.subject_name, us.user_name, en.student_id,  en.grade, en.score, en.classwork, en.final, en.exam_state ,su.subject_code, en.state
       FROM enrolment AS en
       INNER JOIN student AS st
       ON st.student_id=en.student_id

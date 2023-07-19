@@ -28,6 +28,7 @@ class GradesController extends Controller
             $grade = DB::select('SELECT
                 su.subject_name,
                 su.subject_level,
+                su.subject_hours,
                 e.grade,
                 e.score
                 FROM enrolment AS e
