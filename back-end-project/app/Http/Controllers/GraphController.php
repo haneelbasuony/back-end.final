@@ -11,22 +11,54 @@ class GraphController extends Controller
     public function graphBySubject($subject_code, $year, $semester)
     {
 
-        $graph = DB::select('SELECT score, COUNT(*) as count
-    FROM enrolment
-    WHERE score IN ("A+", "A", "A-","B+", "B", "B-","C+", "C", "C-","D+", "D", "D-","F")
-    AND subject_code = :subjectCode
-    AND year = :Year
-    AND semester = :Semester
-    GROUP BY score',
+        $scoreMapping = [
+            "A+" => "Aplus",
+            "A" => "A",
+            "A-" => "Aminus",
+            "B+" => "Bplus",
+            "B" => "B",
+            "B-" => "Bminus",
+            "C+" => "Cplus",
+            "C" => "C",
+            "C-" => "Cminus",
+            "D+" => "Dplus",
+            "D" => "D",
+            "D-" => "Dminus",
+            "F" => "F",
+        ];
+
+        $graph = DB::select('SELECT all_scores.score AS score, COUNT(enrolment.score) AS count
+        FROM (
+            SELECT "A+" AS score UNION ALL
+            SELECT "A" UNION ALL
+            SELECT "A-" UNION ALL
+            SELECT "B+" UNION ALL
+            SELECT "B" UNION ALL
+            SELECT "B-" UNION ALL
+            SELECT "C+" UNION ALL
+            SELECT "C" UNION ALL
+            SELECT "C-" UNION ALL
+            SELECT "D+" UNION ALL
+            SELECT "D" UNION ALL
+            SELECT "D-" UNION ALL
+            SELECT "F"
+        ) all_scores
+        LEFT JOIN enrolment
+            ON all_scores.score = enrolment.score
+            AND enrolment.subject_code = ?
+            AND enrolment.year = ?
+            AND enrolment.semester = ?
+        GROUP BY all_scores.score',
             [
-                'subjectCode' => $subject_code,
-                'Year' => $year,
-                'Semester' => $semester
+                $subject_code,
+                $year,
+                $semester
             ]
         );
         $result1 = [];
         foreach ($graph as $row) {
-            $result1[$row->score] = $row->count;
+            $scoreWord = $scoreMapping[$row->score];
+            $result1[$scoreWord] = $row->count;
         }
 
 
@@ -44,7 +76,7 @@ class GraphController extends Controller
         )[0]->Total;
 
 
-        $results=DB::select('SELECT (
+        $results = DB::select('SELECT (
             SELECT COUNT(*) as PassedStudents
             FROM enrolment
             WHERE grade > 59
@@ -59,10 +91,10 @@ class GraphController extends Controller
             ON i.instructor_id = s.instructor_id
             WHERE s.subject_code = ?',
             [
-                  $subject_code,
-                  $year,
-                  $semester,
-                  $subject_code
+                $subject_code,
+                $year,
+                $semester,
+                $subject_code
             ]
         );
         $passedStudents = $results[0]->PassedStudents;
