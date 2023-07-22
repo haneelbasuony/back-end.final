@@ -97,18 +97,21 @@ class GraphController extends Controller
                 $subject_code
             ]
         );
-        $passedStudents = $results[0]->PassedStudents;
-        $instructorName = $results[0]->instructor_name;
-        $assistant = $results[0]->assistant;
+        if ($results) {
+            $passedStudents = $results[0]->PassedStudents;
+            $instructorName = $results[0]->instructor_name;
+            $assistant = $results[0]->assistant;
 
-        $Fulldata = [
-            'InstructorName' => $instructorName,
-            'AssistantName' => $assistant,
-            'StudentCount' => $regestrationCount,
-            'PassedStudentsCount' => $passedStudents,
-            ...$result1
-        ];
-
+            $Fulldata = [
+                'InstructorName' => $instructorName,
+                'AssistantName' => $assistant,
+                'StudentCount' => $regestrationCount,
+                'PassedStudentsCount' => $passedStudents,
+                ...$result1
+            ];
+        } else {
+            $Fulldata = "No Data Found";
+        }
         return response()->json($Fulldata);
 
     }

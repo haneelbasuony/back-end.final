@@ -63,14 +63,21 @@ Route::get('student/getnotfication/{studentID}', [NotificationController::class,
 //Show request student requested subjects 
 Route::get('student/enrolment/getRequests/{id}', [EnrollmentController::class, 'getRequestedOrApproved']);
 
+//
+Route::put('student/updateStudentData/{student_id}/{student_gpa}/{accepted_hours}/{passedSubjects}', [StudentController::class, 'updateStudentData']);
+
+
 
 //-------Advisor--------------------------
 //----------------------------------------
 // Get advisor image (OK)
 Route::get('advisor/Image/{id}', [AdvisorController::class, 'getImage']);
 
-//Show request (waiting GUI)
-Route::get('advisor/enrolment/getRequest', [EnrollmentController::class, 'getRequest']);
+//Show request count (working ON)
+Route::get('advisor/enrolment/getRequestCount', [EnrollmentController::class, 'getRequestCount']);
+
+//Show  student request (working ON)
+Route::get('advisor/enrolment/getStudentsRequests', [EnrollmentController::class, 'getStudentsRequests']);
 
 //handelRequest (waiting GUI)
 Route::post('advisor/enrolment/handelRequest', [EnrollmentController::class, 'handelRequest']);

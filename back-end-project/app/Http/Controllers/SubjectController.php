@@ -23,6 +23,8 @@ class SubjectController extends Controller
                 subject_hours,
                 subject_level,
                 Term,
+                prerequisite1,
+                prerequisite2
                 status
                 FROM subject');
         $data = [
@@ -39,7 +41,7 @@ class SubjectController extends Controller
         $data = $request->input('data');
         foreach ($data as $row) {
             $subjectCode = $row['subject_code'];
-            $subjectStatus = $row['state'];
+            $subjectStatus = $row['status'];
             // Add each row to the insert data array
             DB::table('subject')
                 ->where('subject_code', $subjectCode)

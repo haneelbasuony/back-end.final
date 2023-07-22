@@ -30,7 +30,11 @@ class GradesController extends Controller
                 su.subject_level,
                 su.subject_hours,
                 e.grade,
-                e.score
+                e.year,
+                e.semester,
+                e.score,
+                e.trial,
+                e.exam_state
                 FROM enrolment AS e
                 INNER JOIN student AS s
                 ON s.student_id = e.student_id

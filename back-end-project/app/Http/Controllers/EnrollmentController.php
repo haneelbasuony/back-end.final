@@ -32,7 +32,7 @@ class EnrollmentController extends Controller
 
         // Retrieve subject information and enrollment data for the student in the given term and level
         $leveData = DB::select(
-            'SELECT s.submition, s.dropablitiy, s.subject_level, s.Term ,s.subject_code,s.subject_name ,s.subject_hours,e.grade, s.status ,e.state AS enrolment_state
+            'SELECT s.submition, s.dropablitiy, s.subject_level, s.Term ,s.subject_code,s.subject_name ,s.subject_hours,e.grade, s.status ,e.state AS enrolment_state, s.semester,s.year
         FROM subject s
         LEFT OUTER JOIN enrolment e
         ON s.subject_code = e.subject_code AND e.student_id = :id',
@@ -172,20 +172,39 @@ class EnrollmentController extends Controller
 
 
 
-    public function getRequest()
+    public function getRequestCount()
     {
-        $Request = DB::select('SELECT  us.user_name,e.student_id, e.subject_code, su.subject_name 
+        $query = DB::select('SELECT e.subject_code, su.subject_name , i.instructor_name, COUNT(*) AS request_count
         FROM enrolment AS e 
         INNER JOIN subject AS su
         ON su.subject_code = e.subject_code
-        INNER JOIN student AS st
-        ON e.student_id=st.student_id
-        INNER JOIN user AS us
-        ON us.user_id=st.user_id
-        WHERE state = "Requested"  ');
+        INNER JOIN instructor AS i
+        ON i.instructor_id=su.instructor_id
+        WHERE e.state = "Requested" 
+        OR e.state ="Approved"
+        GROUP BY e.subject_code');
 
-        return response()->Json($Request);
+        return response()->Json($query);
     }
+
+    public function getStudentsRequests()
+    {
+        $query = DB::select('SELECT DISTINCT e.student_id, sub.subject_names AS requested_subjects
+        FROM enrolment AS e
+        INNER JOIN (
+            SELECT student_id, GROUP_CONCAT(subject_name SEPARATOR " - ") AS subject_names
+            FROM (
+                SELECT e.student_id, su.subject_name
+                FROM enrolment AS e
+                INNER JOIN subject AS su ON su.subject_code = e.subject_code
+                WHERE e.state = "Requested" OR e.state = "Approved"
+                GROUP BY e.student_id, su.subject_code
+            ) subjects_per_student
+            GROUP BY student_id
+        ) sub ON e.student_id = sub.student_id;');
+         return response()->Json($query);
+    }
+
 
     public function handelRequest(request $request)
     {
@@ -267,7 +286,7 @@ class EnrollmentController extends Controller
 
     public function getGradesTableData($subject_code, $semester, $year)
     {
-        $data = DB::select('SELECT  su.subject_name, us.user_name, en.student_id,  en.grade, en.score, en.classwork, en.final, en.exam_state ,su.subject_code, en.state
+        $data = DB::select('SELECT  su.subject_name, us.user_name, en.student_id,  en.grade, en.score, en.classwork, en.final, en.exam_state ,su.subject_code, en.state, st.student_gpa
       FROM enrolment AS en
       INNER JOIN student AS st
       ON st.student_id=en.student_id
@@ -291,7 +310,7 @@ class EnrollmentController extends Controller
         INNER JOIN subject AS su
         ON su.subject_code = e.subject_code
         WHERE e.state = "Requested"
-        AND e.student_id =:student_id', ['student_id' => $student_id] ) ;
+        AND e.student_id =:student_id', ['student_id' => $student_id]);
 
         return response()->Json($Request);
     }
