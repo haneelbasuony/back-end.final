@@ -55,7 +55,7 @@ Route::get('student/grades/{id}/{level}', [GradesController::class, 'gradesLevel
 Route::get('student/subject/{id}', [EnrollmentController::class, 'termState']);
 
 //Insert Enrolment OK
-Route::post('student/enrolmentState', [EnrollmentController::class, 'enrolmentState']);
+Route::put('student/enrolmentState', [EnrollmentController::class, 'enrolmentState']);
 
 // student Notfication Menu
 Route::get('student/getnotfication/{studentID}', [NotificationController::class, 'getStudentNotification']);

@@ -105,7 +105,7 @@ class EnrollmentController extends Controller
                             'state' => $state,
                         ]);
                 } else {
-                    $insertData[] = [
+                    $insertData[0] = [
                         'student_id' => $id,
                         'subject_code' => $subject,
                         'state' => $state,
@@ -117,7 +117,7 @@ class EnrollmentController extends Controller
 
                 }
             } else {
-                $insertData[] = [
+                $insertData[0] = [
                     'student_id' => $id,
                     'subject_code' => $subject,
                     'state' => $state,
@@ -174,7 +174,7 @@ class EnrollmentController extends Controller
 
     public function getRequestCount()
     {
-        $query = DB::select('SELECT e.subject_code, su.subject_name , i.instructor_name, COUNT(*) AS request_count
+        $query = DB::select('SELECT su.year,su.semester, e.subject_code, su.subject_name , i.instructor_name, COUNT(*) AS request_count
         FROM enrolment AS e 
         INNER JOIN subject AS su
         ON su.subject_code = e.subject_code
@@ -189,20 +189,22 @@ class EnrollmentController extends Controller
 
     public function getStudentsRequests()
     {
-        $query = DB::select('SELECT DISTINCT e.student_id, sub.subject_names AS requested_subjects
+        $query = DB::select('SELECT DISTINCT e.student_id, sub.user_name , sub.subject_names AS requested_subjects
         FROM enrolment AS e
         INNER JOIN (
-            SELECT student_id, GROUP_CONCAT(subject_name SEPARATOR " - ") AS subject_names
+            SELECT student_id, GROUP_CONCAT(subject_name SEPARATOR " - ") AS subject_names , user_name
             FROM (
-                SELECT e.student_id, su.subject_name
+                SELECT e.student_id, su.subject_name , u.user_name
                 FROM enrolment AS e
                 INNER JOIN subject AS su ON su.subject_code = e.subject_code
+                INNER JOIN student AS st ON st.student_id = e.student_id
+                INNER JOIN user AS u ON u.user_id = st.user_id
                 WHERE e.state = "Requested" OR e.state = "Approved"
                 GROUP BY e.student_id, su.subject_code
             ) subjects_per_student
             GROUP BY student_id
         ) sub ON e.student_id = sub.student_id;');
-         return response()->Json($query);
+        return response()->Json($query);
     }
 
 
