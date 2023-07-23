@@ -24,7 +24,7 @@ class SubjectController extends Controller
                 subject_level,
                 Term,
                 prerequisite1,
-                prerequisite2
+                prerequisite2,
                 status
                 FROM subject');
         $data = [
