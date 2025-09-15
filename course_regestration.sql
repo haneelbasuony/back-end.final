@@ -82,7 +82,7 @@ INSERT INTO `advisor_notfication` (`advisor_id`, `message`, `read_info`, `notfic
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enrolment`
+-- Table structure for table `enrolment id`
 --
 
 CREATE TABLE `enrolment` (
